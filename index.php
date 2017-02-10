@@ -29,7 +29,9 @@
 
 		mysqli_set_charset($conn,"utf8");
 
-		$sql = "SELECT `Pavadinimas`, `Leidimo metai`, `Autorius`, `Zanras` FROM knygos ORDER BY `Leidimo metai`";
+		//--------------------------------------------------------//
+
+		$sql = "SELECT `Knygos_pavadinimas`, `Leidimo_metai`, `Autorius`, `Zanras` FROM knygos ORDER BY `id`";
 		$result = mysqli_query($conn, $sql);
 
 		if(!$result){
@@ -39,11 +41,11 @@
 		if (mysqli_num_rows($result) > 0) {
 		     // output data of each row
 		     while($row = mysqli_fetch_assoc($result)) {
-		         echo "<tr><td>" . $row["Pavadinimas"] . 
+		         echo "<tr><td>" . $row["Knygos_pavadinimas"] . 
 		         /*"</td><td>" . $row["Leidimo metai"] . 
 		         "</td><td>" . $row["Autorius"] .
 		         "</td><td>" . $row["Zanras"] .*/
-		         "</td><td><a href='book.php?query=" . $row["Pavadinimas"] . "' target='_blank'>Plačiau</a></td></tr>";
+		         "</td><td><a href='book.php?query=" . $row["Knygos_pavadinimas"] . "' target='_blank'>Plačiau</a></td></tr>";
 		     }
 		} else {
 		     echo "0 results";
@@ -51,7 +53,8 @@
 
 		mysqli_close($conn);
 
-		?>  
+		?> 
+
 		</table>
 	</body>
 </html>
