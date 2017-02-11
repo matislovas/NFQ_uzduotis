@@ -23,7 +23,7 @@
 
 				mysqli_set_charset($conn,"utf8");
 
-				$sql = "SELECT * FROM knygos WHERE `Pavadinimas` LIKE" . "'". $_GET['query']."'";
+				$sql = "SELECT * FROM knygos WHERE `Knygos_pavadinimas` LIKE" . "'". $_GET['query']."'";
 
 				$result = mysqli_query($conn, $sql);
 
@@ -35,7 +35,7 @@
 			     // output data of each row
 			     while($row = mysqli_fetch_assoc($result)) {
 			         echo "<li>" ."Žanras: " . $row["Zanras"] . "</li>" .
-			         "<li>" ."Leidimo metai: " . $row["Leidimo metai"] . "</li>" .
+			         "<li>" ."Leidimo metai: " . $row["Leidimo_metai"] . "</li>" .
 			         "<li>" ."Autorius: " . $row["Autorius"] . "</li>";
 					}
 				}	
