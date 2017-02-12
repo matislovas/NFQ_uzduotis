@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<link rel="icon" href="/images/book-icon-139.png">
 	</head>
 	<body style="margin:5px;padding:5px">
 		<?php

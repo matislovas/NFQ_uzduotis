@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<link rel="icon" href="/images/book-icon-139.png">
 	</head>
 	<body>
 		<ul class="w3-ul w3-border" style="max-width: 500px">
