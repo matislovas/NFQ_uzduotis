@@ -5,50 +5,13 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-		<style type="text/css">
-			
-			div.pagination {
-				padding: 3px;
-				margin: 3px;
-				position: relative;
-			}
-
-			div.pagination a {
-				padding: 2px 5px 2px 5px;
-				margin: 2px;
-				border: 1px solid #AAAADD;
-				text-decoration: none; /* no underline */
-				color: #000099;
-			}
-
-			div.pagination a:hover, div.pagination a:active {
-				border: 1px solid #000099;
-				color: #000;
-			}
-
-			div.pagination span.current {
-				padding: 2px 5px 2px 5px;
-				margin: 2px;
-				border: 1px solid #000099;
-				font-weight: bold;
-				background-color: #ccc;
-				color: #000;
-			}
-
-			div.pagination span.disabled {
-				padding: 2px 5px 2px 5px;
-				margin: 2px;
-				border: 1px solid #EEE;
-				color: #DDD;
-			}
-
-		</style>
 	</head>
 	<body style="margin:5px;padding:5px">
-		<?php 
+		<?php
+			//------------Function for mergin GET array on multiple parameters ---------------//
 			$url = $_SERVER['REQUEST_URI'];
 
-			function merge_querystring($url = null,$query = null,$recursive = false) {
+			function mergeQuerystring($url = null,$query = null,$recursive = false) {
 			  // $url = 'http://www.google.com.au?q=apple&type=keyword';
 			  // $query = '?q=banana';
 			  // if there's a URL missing or no query string, return
@@ -71,39 +34,40 @@
 			    $merged_result = array_merge_recursive($original_query_string,$merged_query_string);
 			  else
 			    $merged_result = array_merge($original_query_string,$merged_query_string);
-			  // Find the original query string in the URL and replace it with the new one
+			  // find the original query string in the URL and replace it with the new one
 			  return str_replace($url_components['query'],http_build_query($merged_result),$url);
 			}
 		?>
-		<div class="w3-container" style="max-width: 750px;">
+		<div class="w3-container" style="max-width: 750px; vertical-align: middle">
 		  <ul class="w3-navbar w3-card-2 w3-light-grey">
 		  	<li>
 		  	<a href="index.php" style="width: 100px; font-size:80%; text-align:center; vertical-align:middle">Pradinis puslapis</a>
 		  	</li>
 		    <li class="w3-dropdown-hover">
 		      <a href="#" style="width: 100px; font-size:80%; text-align:center; vertical-align:middle">Grupuoti pagal<i class="fa fa-caret-down"></i></a>
-		      <div class="w3-dropdown-content w3-white w3-card-4" style="width: 120px; text-align:center; vertical-align:middle">
-		        <a href="<?=merge_querystring($url,'?order=Knygos_pavadinimas');?>">Knygos pavadinimas</a>
-		        <a href="<?=merge_querystring($url,'?order=Leidimo_metai');?>">Leidimo metai</a>
+		      <div class="w3-dropdown-content w3-white w3-card-4" style="width: 120px; vertical-align:middle">
+		        <a href="<?=mergeQuerystring($url,'?order=Knygos_pavadinimas');?>">Knygos pavadinimas</a>
+		        <a href="<?=mergeQuerystring($url,'?order=Leidimo_metai');?>">Leidimo metai</a>
 		      </div>
 		    </li>
 		    <li class="w3-dropdown-hover">
 		      <a href="#" style="width: 100px; font-size:80%; text-align:center; vertical-align:middle">Įrašų puslapyje<i class="fa fa-caret-down"></i></a>
 		      <div class="w3-dropdown-content w3-white w3-card-4">
-		      	<a href="<?=merge_querystring($url,'?listsize=5');?>">5</a>
-		        <a href="<?=merge_querystring($url,'?listsize=10');?>">10</a>
-		        <a href="<?=merge_querystring($url,'?listsize=20');?>">20</a>
-		        <a href="<?=merge_querystring($url,'?listsize=40');?>">40</a>
+		      	<a href="<?=mergeQuerystring($url,'?listsize=5');?>">5</a>
+		        <a href="<?=mergeQuerystring($url,'?listsize=10');?>">10</a>
+		        <a href="<?=mergeQuerystring($url,'?listsize=20');?>">20</a>
+		        <a href="<?=mergeQuerystring($url,'?listsize=40');?>">40</a>
 		      </div>
 		    </li>
-		    <form action="#" method="get">
-		    <li>
-			    <div class="w3-third" style="width: 190px; "> 
-					<input class="w3-input w3-border" type="text" name="search" placeholder="Paieska ..."/>  
+		    <div style="vertical-align: middle; padding-top: 6px">
+		    <form action="#" style="vertical-align: middle">
+		    <li style="vertical-align: middle;">
+			    <div class="w3-third" style="width: 190px; vertical-align:middle"> 
+					<input class="w3-input w3-border" type="text" name="search" placeholder="Paieška ..."/>  
 	  			</div>
   			</li>
   			<li>
-	  			<select class="w3-select w3-border" name="criteria" style="width: 100px;">
+	  			<select class="w3-select w3-border" name="criteria" style="width: 100px; vertical-align:middle;">
 				    <option value="Knygos_pavadinimas" disabled selected>Kriterijus</option>
 				    <option value="Zanras">Žanras</option>
 				    <option value="Autorius">Autorius</option>
@@ -112,56 +76,45 @@
 			  	</select>
 			</li>
 			<li>
-				<input style="width: 100px; vertical-align: middle;" class="w3-btn w3-teal" type="Submit" value="Paieška" />
+				<input style="width: 100px; vertical-align: middle" class="w3-btn w3-teal" type="Submit" value="Paieška" />
 			</li>
 			</form>
+			</div>
 		  </ul>
 		</div>
 		<br>
-		<table class="w3-table-all w3-hoverable" style="max-width: 750px;"">
+		<table class="w3-table-all w3-hoverable" style="max-width: 750px;">
 		<tr>
 		  <th>Knygos pavadinimas</th>
 		  <th></th>
 		</tr>
 			<?php
 
-				require __DIR__."/conf.php";	// include your code to connect to DB.
-
-				// Create connection
+				//------------DB connection ---------------//
+				require __DIR__."/conf.php";
 				$conn = mysqli_connect($servername, $username, $password, $dbname);
-				// Check connection
 				if (!$conn) {
 				    die("Connection failed: " . mysqli_connect_error());
 				}
-
 				mysqli_set_charset($conn,"utf8");
 
-				// How many adjacent pages should be shown on each side?
+				//------------Adjacents pages in pagination bar---------------//
 				$adjacents = 3;
-				
-				/* 
-				   First get total number of rows in data table. 
-				   If you have a WHERE clause in your query, make sure you mirror it here.
-				*/
-				
-				//$total_pages = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM knygos"));
-				
-				//how many items to show per page
+
+				//------------GET array default values and assigning vars ---------------//
 				if(empty($_GET['listsize'])){$limit=5;} else {$limit = $_GET['listsize'];}
 				
 				if(empty($_GET['page'])){$page=1;} else {$page = $_GET['page'];}
 
 				if(empty($_GET['order'])){$ordering="id";} else {$ordering = $_GET['order'];}
-				
+
+				//------------How many items to show per page---------------//
 				if($page) 
-					$start = ($page - 1) * $limit; 			//first item to display on this page
+					$start = ($page - 1) * $limit;
 				else
-					$start = 0;								//if no page var is given, set start to 0
-				
-				//Get data
+					$start = 0;
 
-				//---------------------------------------//
-
+				//------------Get data from DB ---------------//
 				if (!empty($_GET['search']) && !empty($_GET['criteria'])) {
 
 					$term = mysqli_real_escape_string($conn, $_GET['search']);
@@ -176,95 +129,112 @@
 					$sql = "SELECT Knygos_pavadinimas FROM knygos ORDER BY $ordering LIMIT $start, $limit";
 				}
 
-				//---------------------------------------//
-				
 				$result = mysqli_query($conn, $sql);
-				
-				/* Setup page vars for display. */
-				if ($page == 0) $page = 1;					//if no page var is given, default to 1.
-				$prev = $page - 1;							//previous page is page - 1
-				$next = $page + 1;							//next page is page + 1
-				$lastpage = ceil($total_pages/$limit);		//lastpage is = total pages / items per page, rounded up.
-				$lpm1 = $lastpage - 1;						//last page minus 1
+
+				//------------Setup page vars for display ---------------//
+				if ($page == 0) $page = 1;					
+				$prev = $page - 1;							
+				$next = $page + 1;							
+				$lastpage = ceil($total_pages/$limit);		
+				$lpm1 = $lastpage - 1;						
 				
 				//------------Pagination object implemented in variable ---------------//
-
 				$pagination = "";
 				if($lastpage > 1)
 				{	
-					$pagination .= "<div class=\"pagination\">";
+					$pagination .= "<ul class=\"w3-pagination\" style=\"padding-top: 4px\">";
 					//previous button
-					if ($page > 1) 
-						$pagination.= "<a href=".merge_querystring($url,'?page='.$prev).">&laquo; previous</a>";
-					else
-						$pagination.= "<span class=\"disabled\">&laquo; previous</span>";	
+					if ($page > 1) {
+						$pagination.= "<li><a href=".mergeQuerystring($url,'?page='.$prev).">&laquo;</a></li>";
+					} else {
+						$pagination.= "<li><a href=\"#\">&laquo;</a></li>";	
+					}
 					
 					//pages	
 					if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
 					{	
-						for ($counter = 1; $counter <= $lastpage; $counter++)
-						{
-							if ($counter == $page)
-								$pagination.= "<span class=\"current\">$counter</span>";
-							else
-								$pagination.= "<a href=".merge_querystring($url,'?page='. $counter).">$counter</a>";					
+						for ($counter = 1; $counter <= $lastpage; $counter++) {
+
+							if ($counter == $page){
+
+								$pagination.= "<li><a class=\"w3-green\">$counter</a></li>";
+							} else {
+
+								$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $counter).">$counter</a></li>";					
+							}
 						}
 					}
-					elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
-					{
+
+					//enough pages to hide some
+					elseif($lastpage > 5 + ($adjacents * 2)) {
+
 						//close to beginning; only hide later pages
-						if($page < 1 + ($adjacents * 2))		
-						{
-							for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
-							{
-								if ($counter == $page)
-									$pagination.= "<span class=\"current\">$counter</span>";
-								else
-									$pagination.= "<a href=".merge_querystring($url,'?page='. $counter).">$counter</a>";					
+						if($page < 1 + ($adjacents * 2)) {
+
+							for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
+
+								if ($counter == $page) {
+									$pagination.= "<li><a class=\"w3-green\">$counter</a></li>";
+								} else {
+
+									$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $counter).">$counter</a></li>";
+								}
 							}
-							$pagination.= "...";
-							$pagination.= "<a href=".merge_querystring($url,'?page='.$lpm1).">$lpm1</a>";
-							$pagination.= "<a href=".merge_querystring($url,'?page='.$lastpage).">$lastpage</a>";		
+
+							$pagination.= "<li><a style=\"background-color:transparent\">...</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page='.$lpm1).">$lpm1</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page='.$lastpage).">$lastpage</a></li>";		
 						}
+
 						//in middle; hide some front and some back
-						elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
-						{
-							$pagination.= "<a href=".merge_querystring($url,'?page=1').">1</a>";
-							$pagination.= "<a href=".merge_querystring($url,'?page=2').">2</a>";
-							$pagination.= "...";
-							for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
-							{
-								if ($counter == $page)
-									$pagination.= "<span class=\"current\">$counter</span>";
-								else
-									$pagination.= "<a href=".merge_querystring($url,'?page='. $counter).">$counter</a>";					
+						elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2)) {
+
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page=1').">1</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page=2').">2</a></li>";
+							$pagination.= "<li><a style=\"background-color:transparent\">...</a></li>";
+							for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++) {
+
+								if ($counter == $page) {
+									$pagination.= "<li><a class=\"w3-green\">$counter</a></li>";
+								} else {
+
+									$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $counter).">$counter</a></li>";
+								}
 							}
-							$pagination.= "...";
-							$pagination.= "<a href=".merge_querystring($url,'?page='. $lpm1).">$lpm1</a>";
-							$pagination.= "<a href=".merge_querystring($url,'?page='. $lastpage).">$lastpage</a>";		
+
+							$pagination.= "<li><a style=\"background-color:transparent\">...</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $lpm1).">$lpm1</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $lastpage).">$lastpage</a></li>";		
 						}
+
 						//close to end; only hide early pages
-						else
-						{
-							$pagination.= "<a href=".merge_querystring($url,'?page=1').">1</a>";
-							$pagination.= "<a href=".merge_querystring($url,'?page=2').">2</a>";
-							$pagination.= "...";
-							for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
-							{
-								if ($counter == $page)
-									$pagination.= "<span class=\"current\">$counter</span>";
-								else
-									$pagination.= "<a href=".merge_querystring($url,'?page='. $counter).">$counter</a>";					
+						else {
+
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page=1').">1</a></li>";
+							$pagination.= "<li><a href=".mergeQuerystring($url,'?page=2').">2</a></li>";
+							$pagination.= "<li><a style=\"background-color:transparent\">...</a></li>";
+
+							for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++) {
+
+								if ($counter == $page) {
+									$pagination.= "<li><a class=\"w3-green\">$counter</a></li>";
+								} else {
+
+									$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $counter).">$counter</a></li>";					
+								}
 							}
 						}
 					}
 					
 					//next button
-					if ($page < $counter - 1) 
-						$pagination.= "<a href=".merge_querystring($url,'?page='. $next).">next &raquo;</a>";
-					else
-						$pagination.= "<span class=\"disabled\">next &raquo;</span>";
-					$pagination.= "</div>\n";		
+					if ($page < $counter - 1) {
+
+						$pagination.= "<li><a href=".mergeQuerystring($url,'?page='. $next)."> &raquo;</a></li>";
+					} else {
+						$pagination.= "<li><a href=\"#\">&raquo;</a></li>";
+					}
+
+					$pagination.= "</ul>\n";		
 				}
 			?>
 
@@ -276,7 +246,7 @@
 			?>
 		</table>
 		<br>
-		<div class="w3-container" style="max-width: 750px;" >
+		<div class="w3-container" style="max-width: 750px" >
 		<ul class="w3-navbar w3-card-2 w3-light-grey">
 		<?=$pagination?>
 		</ul>

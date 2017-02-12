@@ -23,7 +23,9 @@
 
 				mysqli_set_charset($conn,"utf8");
 
-				$sql = "SELECT * FROM knygos WHERE `Knygos_pavadinimas` LIKE" . "'". $_GET['query']."'";
+				$query = $_GET['query'];
+
+				$sql = "SELECT * FROM knygos WHERE `Knygos_pavadinimas` LIKE" . "'". $query."'";
 
 				$result = mysqli_query($conn, $sql);
 
